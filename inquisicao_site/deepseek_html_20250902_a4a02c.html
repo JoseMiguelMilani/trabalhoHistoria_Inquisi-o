@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inquisição - Trabalho de História IFPR</title>
+     <link rel="icon" href="IFPR.png" type="image/x-icon",  style="width: 60%; height: auto;">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos Gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding-top: 80px; /* Espaço para o header fixo */
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Cabeçalho Horizontal Compacto */
+        header {
+            background-color: #1e5631; /* Verde escuro */
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 5%;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-placeholder {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            border: 2px solid white;
+            overflow: hidden;
+        }
+        
+        .logo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .logo {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo h1 {
+            font-size: 1.5rem;
+            margin: 0;
+            line-height: 1.2;
+        }
+        
+        .logo p {
+            font-size: 0.8rem;
+            margin: 0;
+            opacity: 0.8;
+        }
+        
+        /* Navegação Horizontal */
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        nav li {
+            margin: 0 5px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            display: block;
+            transition: background-color 0.3s;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        
+        nav a:hover {
+            background-color: #2a7d3b;
+        }
+        
+        /* Seções */
+        section {
+            padding: 40px 0;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        section h2 {
+            color: #1e5631;
+            margin-bottom: 20px;
+            text-align: center;
+            padding-top: 15px;
+        }
+        
+        section p, section ul {
+            margin-bottom: 15px;
+        }
+        
+        section ul {
+            padding-left: 20px;
+        }
+        
+        /* Seção O que é */
+        #o-que-e {
+            text-align: center;
+        }
+        
+        .image-placeholder {
+            width: 100%;
+            max-width: 600px;
+            height: 250px;
+            margin: 20px auto;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 2px solid #1e5631;
+        }
+        
+        .image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Linha do tempo */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 60px auto 40px; /* Mais espaço acima */
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #1e5631;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            margin-bottom: 30px;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 40px;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 40px;
+        }
+        
+        .timeline-content {
+            padding: 15px;
+            background-color: white;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .timeline-content::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #1e5631;
+            border: 4px solid #1e5631;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            right: -13px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::after {
+            left: -13px;
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: #1e5631;
+            margin-bottom: 5px;
+        }
+        
+        /* Métodos e Procedimentos */
+        .method {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            gap: 20px;
+        }
+        
+        .method-content {
+            flex: 1;
+        }
+        
+        .method-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        
+        .method-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Países - Carrossel */
+        .carousel {
+            position: relative;
+            max-width: 800px;
+            margin: 30px auto;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .carousel-item {
+            min-width: 100%;
+            background-color: white;
+            padding: 30px;
+        }
+        
+        .carousel-item h3 {
+            color: #1e5631;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #eaeaea;
+            padding-bottom: 10px;
+        }
+        
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        
+        .carousel-btn {
+            background-color: #1e5631;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .carousel-btn:hover {
+            background-color: #2a7d3b;
+        }
+        
+        /* Figuras - Imagens em formato circular */
+        .figures {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .figure-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            width: 100%;
+            max-width: 300px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .figure-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            overflow: hidden;
+            border: 3px solid #1e5631;
+        }
+        
+        .figure-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Curiosidades e Mitos */
+        .curiosities-myths {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .curiosities, .myths {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .curiosities h3, .myths h3 {
+            color: #1e5631;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eaeaea;
+        }
+        
+        /* Quiz */
+        .quiz-container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .question {
+            margin-bottom: 20px;
+        }
+        
+        .options label {
+            display: block;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .options label:hover {
+            background-color: #f9f9f9;
+        }
+        
+        button {
+            background-color: #1e5631;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #2a7d3b;
+        }
+        
+        #quiz-result {
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        /* Rodapé */
+        footer {
+            background-color: #1e5631;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 900px) {
+            .header-content {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            nav ul {
+                gap: 5px;
+            }
+            
+            nav a {
+                padding: 6px 8px;
+                font-size: 0.8rem;
+            }
+            
+            body {
+                padding-top: 120px;
+            }
+            
+            .method {
+                flex-direction: column;
+            }
+            
+            .method-image {
+                width: 100%;
+                max-width: 250px;
+                margin: 0 auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 0;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content::after {
+                left: -13px;
+                right: auto;
+            }
+            
+            .carousel-item {
+                padding: 20px;
+            }
+            
+            .figures {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo h1 {
+                font-size: 1.2rem;
+            }
+            
+            .logo p {
+                font-size: 0.7rem;
+            }
+            
+            nav a {
+                font-size: 0.75rem;
+                padding: 5px;
+            }
+            
+            .curiosities-myths {
+                flex-direction: column;
+            }
+            
+            .figure-image {
+                width: 100px;
+                height: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo-container">
+                <div class="logo-placeholder">
+                    <img src="IFPR.png" alt="fotoIfpr" style="width: 60%; height: auto;">
+                </div>
+                <div class="logo">
+                    <h1>INQUISIÇÃO</h1>
+                    <p>Trabalho de História</p>
+                </div>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#o-que-e">O que é</a></li>
+                    <li><a href="#como-comecou">Como começou</a></li>
+                    <li><a href="#metodos">Métodos</a></li>
+                    <li><a href="#pelo-mundo">Pelo Mundo</a></li>
+                    <li><a href="#figuras">Figuras</a></li>
+                    <li><a href="#fim">Fim</a></li>
+                    <li><a href="#curiosidades">Curiosidades</a></li>
+                    <li><a href="#quiz">Quiz</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <div class="container">
+        <section id="o-que-e">
+            <h2>O que é a Inquisição?</h2>
+            <p>A Inquisição foi um tribunal criado pela Igreja Católica, entre os séculos XIII e XIX, para investigar e punir pessoas acusadas de heresia, ou seja, de ir contra a fé oficial. Surgiu na Europa Medieval e depois se espalhou, destacando-se a Inquisição Espanhola e a Portuguesa, que atuou inclusive no Brasil. Seu funcionamento envolvia denúncias, interrogatórios muitas vezes com tortura, julgamentos e sentenças que podiam ir de penitências até a morte na fogueira. O objetivo principal era manter a unidade religiosa e reforçar o poder da Igreja e dos Estados aliados a ela. Historicamente, é entendida como um mecanismo de controle social e político, típico de uma época em que religião e governo estavam profundamente ligados.</p>
+
+            <div class="image-placeholder">
+                <img src="FotoOQueÉ.jpg" alt="Momento histórico da Inquisição">
+            </div>
+        </section>
+        
+        <section id="como-comecou">
+            <h2>Como a Inquisição começou?</h2>
+            <ul style="display: flex; flex-direction: column; align-items: center;">
+                <li>Combate às heresias que ameaçavam a unidade da Igreja Católica</li>
+                <li>Centralização do poder eclesiástico</li>
+                <li>Pressão de monarcas europeus por maior controle religioso em seus territórios</li>
+                <li>Resposta ao crescimento de movimentos dissidentes como os cátaros e valdenses</li>
+            </ul>
+            
+            <div style="height: 40px;"></div> <!-- Espaço adicional -->
+        </section>
+            
+            <h3>Linha do Tempo da Inquisição</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">1184</div>
+                        <p>Primeira inquisição episcopal é estabelecida pelo Papa Lúcio III para combater a heresia cátara no sul da França.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">1231</div>
+                        <p>Papa Gregório IX estabelece a Inquisição papal, tirando o controle dos bispos e centralizando o processo.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">1478</div>
+                        <p>É estabelecida a Inquisição Espanhola pelos Reis Católicos Fernando e Isabel.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">1536</div>
+                        <p>Inquisição Portuguesa é fundada, seguindo o modelo espanhol.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">1542</div>
+                        <p>É estabelecida a Inquisição Romana (também chamada de Santo Ofício) para combater a Reforma Protestante.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">1834</div>
+                        <p>Fim oficial da Inquisição Espanhola, a última a ser extinta.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        <section id="metodos">
+            <h2>Métodos e Procedimentos</h2>
+            <p>A Inquisição seguia um processo formalizado com várias etapas:</p>
+            
+            <div class="method">
+                <div class="method-content">
+                    <h3>Denúncia</h3>
+                    <p>A engrenagem da Inquisição era movida pela denúncia. Qualquer pessoa podia denunciar outra por heresia, suspeita de práticas judaizantes, bruxaria ou qualquer outro desvio da doutrina católica. A encorajava-se a população a vigiar umas às outras, muitas vezes de forma anônima. O anonimato do denunciante era frequentemente protegido, o que tornava a acusação um instrumento perigoso para settle vinganças pessoais, inveja ou conflitos de vizinhança. Os acusados, chamados de "réus", raramente sabiam a identidade de quem os havia delatado, impedindo-os de contestar a credibilidade da fonte ou de preparar uma defesa adequada.</p>
+                </div>
+                <div class="method-image">
+                    <img src="denuncia-Inquisicao.webp" alt="Processo de denúncia na Inquisição">
+                </div>
+            </div>
+            
+            <div class="method">
+                <div class="method-content">
+                    <h3>Investigação e Interrogatórios</h3>
+                    <p>Após a denúncia, os inquisidores iniciavam uma investigação secreta. Eles colhiam depoimentos de testemunhas, cujas identidades também eram ocultadas do réu. Os interrogatórios eram a peça central desse estágio. Conductados por clérigos experientes e eruditos, eles eram desenhados para colocar o acusado em uma teia de contradições.</p>
+                </div>
+                <div class="method-image">
+                    <img src="investigacao.jpg" alt="Processo de investigação na Inquisição">
+                </div>
+            </div>
+            
+            <div class="method">
+                <div class="method-content">
+                    <h3>Julgamentos</h3>
+                    <p>Se os interrogatórios não produzissem uma confissão, os inquisidores podiam recorrer legalmente à tortura. Seu uso era regulamentado por bulas papais (como a Ad extirpanda): teoricamente, não podia causar morte, mutilação ou derramamento de sangue, e deveria ser aplicada com um médico presente. No entanto, na prática, essas regras eram frequentemente ignoradas ou contornadas.</p>
+                </div>
+                <div class="method-image">
+                    <img src="julgamento-Inquisicao.webp" alt="Julgamento na Inquisição">
+                </div>
+            </div>
+            
+            <div class="method">
+                <div class="method-content">
+                    <h3>Tortura</h3>
+                    <p>Os julgamentos eram conduzidos por tribunais eclesiásticos presididos pelos inquisidores. Teoricamente, os acusados tinham direito à defesa, mas este era um direito drasticamente limitado. Eles não conheciam os detalhes concretos da acusação nem as testemunhas que depuseram contra eles, tornando impossível uma defesa plena. Seu defensor, nomeado pelo tribunal, era muitas vezes um clérigo que não desafiava seriamente a autoridade da Inquisição, por medo ou por concordância com seus objetivos.
+
+O processo era, portanto, inteiramente enviesado a favor da acusação. As provas eram majoritariamente testemunhais e confessionais (muitas vezes obtidas sob coação), e a palavra dos inquisidores tinha peso absoluto.</p>
+                </div>
+                <div class="method-image">
+                    <img src="tortura-Inquisição.webp" alt="Métodos de tortura na Inquisição">
+                </div>
+            </div>
+        </section>
+        
+        <section id="pelo-mundo">
+            <h2>Inquisição pelo Mundo</h2>
+            
+            <div class="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item">
+                        <h3>França</h3>
+                        <p>A experiência francesa foi dominada pela Inquisição Medieval (século XIII), dirigida principalmente contra o movimento Cátaro (ou Albigense) no sul do país. Este capítulo foi marcado por uma violência extrema, combinando inquéritos dirigidos por frades dominicanos com uma guerra militar de extermínio, a Cruzada Albigense. Posteriormente, a Inquisição em solo francês perdeu força para os tribunais reais e não desenvolveu um tribunal nacional permanente e independente como na Península Ibérica.</p>
+                    </div>
+                    <div class="carousel-item">
+                        <h3>Espanha</h3>
+                        <p>Estabelecida em 1478 pelos Reis Católicos, Fernando e Isabel, a Inquisição Espanhola foi notavelmente uma ferramenta de Estado para garantir a unidade religiosa e política do reino. Seu foco principal recaiu sobre os conversos (judeus convertidos) e os mouriscos (muçulmanos convertidos), acusados de praticarem suas antigas religiões em segredo. Foi a mais burocrática, centralizada e implacável de todas, responsável por dezenas de milhares de julgamentos e execuções, tornando-se um símbolo de terror religioso e poder real absoluto.</p>
+                    </div>
+                    <div class="carousel-item">
+                        <h3>Portugal</h3>
+                        <p>Criada em 1536 a pedido do rei D. João III, a Inquisição Portuguesa seguiu o modelo espanhol mas destacou-se pela sua intensa perseguição aos cristãos-novos (judeus convertidos), que formavam uma classe mercantil influente. Notória pela sua severidade e pelo uso extensivo da tortura, o tribunal de Lisboa tornou-se um dos mais ativos da Europa. Sua ação estendeu-se por um vasto império ultramarino, embora sua presença física fora da metrópole fosse feita por meio de visitas esporádicas de inquisidores.</p>
+                    </div>
+                    <div class="carousel-item">
+                        <h3>Brasil</h3>
+                        <p>Sob a jurisdição do tribunal de Lisboa, a Inquisição no Brasil colonial não instalou um tribunal permanente, mas agiu por meio de visitas esporádicas de inquisidores (as mais notórias em Pernambuco e Bahia no século XVI) e da rede de agentes locais (como bispos e autoridades leais). Seu alvo principal eram os cristãos-novos envolvidos no comércio de açúcar, acusados de judaísmo, mas também perseguiu a prática de feitiçaria, blasfêmia e costumes indígenas e africanos considerados desvios da fé.</p>
+                    </div>
+                    <div class="carousel-item">
+                        <h3>África</h3>
+                        <p>A atuação da Inquisição no continente africano, sob administração portuguesa, foi pontual e descentralizada, limitando-se a zonas costeiras como Cabo Verde, São Tomé e Príncipe, Angola e Moçambique. O tribunal de Lisboa enviou comissários para investigar principalmente a conduta de colonos e administradores, acusados de práticas heréticas, bruxaria, bigamia ou sincretismo religioso, mas o seu impacto foi reduzido devido à vastidão do território, escassos recursos e prioridade dada a outros domínios do império. O foco manteve-se na vigilância de cristãos-novos e na repressão de rituais locais considerados idolátricos, embora de forma muito menos sistemática e intensa do que no Brasil ou na metrópole.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="carousel-controls">
+                <button class="carousel-btn prev"><i class="fas fa-chevron-left"></i> Anterior</button>
+                <button class="carousel-btn next">Próximo <i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+        
+        <section id="figuras">
+            <h2>Principais Figuras</h2>
+            <div class="figures">
+                <div class="figure-card">
+                    <div class="figure-image">
+                        <img src="gregorio-iX.jpg" alt="Papa Gregório IX">
+                    </div>
+                    <h3>Papa Gregório IX</h3>
+                    <p>Estabeleceu a Inquisição papal em 1231, centralizando o processo de combate às heresias.</p>
+                </div>
+                <div class="figure-card">
+                    <div class="figure-image">
+                        <img src="Torquemada.jpg" alt="Tomás de Torquemada">
+                    </div>
+                    <h3>Tomás de Torquemada</h3>
+                    <p>Primeiro Grande Inquisidor de Espanha, conhecido por sua severidade e fanatismo religioso.</p>
+                </div>
+                <div class="figure-card">
+                    <div class="figure-image">
+                        <img src="isabela.png" alt="Reis Católicos">
+                    </div>
+                    <h3>Reis Católicos</h3>
+                    <p>Fernando II de Aragão e Isabel I de Castela estabeleceram a Inquisição Espanhola em 1478.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="fim">
+            <h2>O Fim da Inquisição</h2>
+            <p>O declínio e a extinção da Inquisição foram um processo lento e gradual, impulsionado pelas transformações intelectuais, políticas e sociais da Era das Luzes e dos movimentos liberais do século XIX. A disseminação dos ideais iluministas, que criticavam o fanatismo religioso, a tortura e a interferência da Igreja nos assuntos de Estado, minou a legitimidade do tribunal. A pressão de potências estrangeiras e a ascensão de governos liberais, que defendiam a liberdade de consciência e a separação entre Igreja e Estado, foram decisivas: a Inquisição Espanhola foi oficialmente abolida em 1834, durante a regência de Maria Cristina de Bourbon, enquanto a Inquisição Portuguesa havia sido extinta em 1821 pelas Cortes Liberais. O Santo Ofício perdeu sua razão de existência num mundo que se secularizava, marcando o fim de um longo capítulo de controle dogmático e perseguição institucionalizada.
+
+</p>
+        </section>
+        
+        <section id="curiosidades">
+            <h2>Curiosidades e Mitos</h2>
+            <div class="curiosities-myths">
+                <div class="curiosities">
+                    <h3>Curiosidades</h3>
+                    <ul>
+                        <li>A Inquisição manteve registros detalhados de seus julgamentos, que são fontes valiosas para historiadores.</li>
+                        <li>Muitos processos inquisitoriais seguiam regras jurídicas complexas, com direito a defesa e apelações.</li>
+                        <li>A Inquisição Portuguesa tinha um "perdão geral" periódico para quem confessasse espontaneamente.</li>
+                        <li>Os autos-de-fé eram cerimônias públicas que podiam durar o day todo e atrair milhares de espectadores.</li>
+                    </ul>
+                </div>
+                
+                <div class="myths">
+                    <h3>Mitos</h3>
+                    <ul>
+                        <li>A Inquisição queimou milhões de pessoas - Estima-se que tenham sido entre 3.000 a 5.000 execuções na Inquisição Espanhola em 350 anos.</li>
+                        <li>A Inquisição foi apenas contra bruxas - Na verdade, focou principalmente em heresias religiosas, não em bruxaria.</li>
+                        <li>A Inquisição condenava qualquer avanço científico - Galileu foi uma exceção, não a regra.</li>
+                        <li>A tortura era usada indiscriminadamente - Havia regras restritivas sobre seu uso.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="quiz">
+            <h2>Quiz sobre a Inquisição</h2>
+            <div class="quiz-container">
+                <div class="question">
+                    <p>1. Em que país a Inquisição começou para combater os cátaros?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="a"> Espanha</label>
+                        <label><input type="radio" name="q1" value="b"> França</label>
+                        <label><input type="radio" name="q1" value="c"> Portugal</label>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <p>2. Quem estabeleceu a Inquisição papal em 1231?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="a"> Papa Inocêncio III</label>
+                        <label><input type="radio" name="q2" value="b"> Papa Gregório IX</label>
+                        <label><input type="radio" name="q2" value="c"> Papa Paulo III</label>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <p>3. Qual foi o principal alvo da Inquisição Espanhola?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="a"> Bruxas</label>
+                        <label><input type="radio" name="q3" value="b"> Judeus e muçulmanos convertidos</label>
+                        <label><input type="radio" name="q3" value="c"> Protestantes</label>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <p>4. Quando a Inquisição Espanhola foi finalmente abolida?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="a"> 1789</label>
+                        <label><input type="radio" name="q4" value="b"> 1834</label>
+                        <label><input type="radio" name="q4" value="c"> 1492</label>
+                    </div>
+                </div>
+                
+                <button onclick="checkQuiz()">Verificar respostas</button>
+                <div id="quiz-result"></div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>Trabalho de História - IFPR - professor Marcelo Hansem</p>
+            <p>Site desenvolvido por José Miguel</p>
+        </div>
+    </footer>
+
+    <script>
+        function checkQuiz() {
+            // Respostas corretas
+            const answers = {
+                q1: "b",
+                q2: "b",
+                q3: "b",
+                q4: "b"
+            };
+            
+            let score = 0;
+            const totalQuestions = Object.keys(answers).length;
+            
+            // Verificar cada questão
+            for (const question in answers) {
+                const selectedOption = document.querySelector(`input[name="${question}"]:checked`);
+                
+                if (selectedOption) {
+                    if (selectedOption.value === answers[question]) {
+                        score++;
+                    }
+                }
+            }
+            
+            // Exibir resultado
+            const resultElement = document.getElementById('quiz-result');
+            resultElement.innerHTML = `Você acertou ${score} de ${totalQuestions} questões!`;
+            
+            // Feedback personalizado
+            if (score === totalQuestions) {
+                resultElement.innerHTML += "<br>Parabéns! Você é um expert na Inquisição!";
+            } else if (score >= totalQuestions / 2) {
+                resultElement.innerHTML += "<br>Bom trabalho! Continue estudando!";
+            } else {
+                resultElement.innerHTML += "<br>Que tal revisar o conteúdo e tentar novamente?";
+            }
+        }
+        
+        // Adicionar smooth scrolling para os links de navegação
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Carrossel de países
+        const carousel = document.querySelector('.carousel-inner');
+        const items = document.querySelectorAll('.carousel-item');
+        const prevBtn = document.querySelector('.carousel-btn.prev');
+        const nextBtn = document.querySelector('.carousel-btn.next');
+        let currentIndex = 0;
+        
+        function updateCarousel() {
+            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+        
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : items.length - 1;
+            updateCarousel();
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex < items.length - 1) ? currentIndex + 1 : 0;
+            updateCarousel();
+        });
+    </script>
+</body>
+</html>
